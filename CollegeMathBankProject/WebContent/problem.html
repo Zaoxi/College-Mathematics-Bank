@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        "HTML-CSS": {undefinedFamily:"'Malgun Gothic',Arial"},
+        "showProcessingMessages": false,
+        "messageStyle": "none"
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $('.outer-menu-item').hover(function(){
+        $(this).find('.inner-menu').show();
+      }, function(){
+        $(this).find('.inner-menu').hide();
+      });
+    });
+
+    $(document).ready(function(){
+      $('#solbutton').click(function(){
+        $('#sol').toggle();
+      });
+    });
+
+    $(document).ready(function(){
+      $('#expbutton').click(function(){
+        $('#exp').toggle();
+      });
+    });
+
+
+    </script>
+    <style>
+
+    @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+    body {
+      /*font-family: 'Nanum Myeongjo', serif;*/
+      width: 660px;
+      margin: auto;
+    }
+
+    h1{
+      text-align: center;
+    }
+    h3{
+      text-align: center;
+    }
+    h4{
+      text-align: center;
+    }
+    a{
+      text-decoration: none;
+    }
+    li{
+      list-style: none;
+    }
+
+    .div{
+      height: 50px;
+      width: 100px;
+      border-style:groove;
+      border-width: thin;
+      margin: 5px;
+
+    }
+
+    .theater-list{
+      width: 640px;
+      height: auto;
+      float:inherit;
+      position: relative;
+      margin: auto;
+    }
+    .outer-menu{
+      padding: 0;
+    }
+    .outer-menu-item{
+      float: left;
+      position: relative;
+      width: 160px;
+      text-align: center;
+      background-color: rgba(255,255,255,0.4);
+      /*border-style:solid;
+      border-width: thin;*/
+    }
+
+
+    .menu-title:hover{
+     /*color: white;*/
+     background-color: rgba(200,200,200,1);
+    }
+
+    .menu-title{
+      display: block;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      padding: 0px;
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+
+    .inner-menu{
+      display: none;
+      /*position: absolute;*/
+      /*position: relative;*/
+      padding: 0px;
+      width: 180px; height: auto;
+      text-align: center;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+
+    }
+
+
+    .inner-menu li{
+      height: 50px;
+      line-height: 50px;
+      width: 210px;
+      /*float: left;*/
+      /*border-style: solid;
+      border-width: thin;*/
+
+    }
+
+    .inner-menu li a{
+      color: rgb(0,0,0);
+      font-size: 14px;
+    }
+
+    .inner-menu :hover{
+      background: rgba(230,230,230,1);
+    }
+
+    .inner-div{
+      height: auto;
+      width: auto;
+      position: absolute;
+      left: -20px;
+    }
+    .pro{
+      width: 600px;
+      height: auto;
+      margin: auto;
+      padding: 30px;
+
+      /*border-style: solid;
+      border-width: thin;*/
+    }
+
+    .solandexpdiv{
+      width: 600px;
+      height: auto;
+      margin: auto;
+      padding: 20px;
+      display: none;
+    }
+
+
+    .solandexpp{
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .span{
+      margin-left: 10px;
+    }
+
+    #proimg{
+      width: 80px;
+      /*border-style: solid;*/
+    }
+    .buttondiv{
+      position:static;
+      margin: auto;
+      /*border-style: solid;*/
+      width: 240px;
+    }
+    .button{
+      margin: 20px;
+    }
+
+    </style>
+  </head>
+
+  <body>
+
+    <h1>대학 수학 문제은행</h1>
+    <h3>과목</h3>
+    <h4>목차</h4>
+
+    <div class="pro">
+      <p class="solandexpp">문제</p>
+      <p></p>
+        <p>급수\[\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n^5}\]의 합을 소수 넷째 자리까지</p>
+    </div>
+
+    <div class="buttondiv">
+      <input type="button" id="solbutton" class = "button" tabindex="1" value="정답보기" onclick="sol()">
+      <input type="button" id="expbutton" class = "button" tabindex="2" value="해설보기">
+    </div>
+
+    <div class="solandexpdiv"id="sol">
+      <p class="solandexpp" >정답</p>
+      <p>0.9721</p>
+    </div>
+
+    <div class="solandexpdiv"id="exp">
+      <p class="solandexpp" >해설</p>
+      <p>0.9721</p>
+    </div>
+
+  </body>
+</html>

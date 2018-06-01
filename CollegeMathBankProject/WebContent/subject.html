@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $('.outer-menu-item').hover(function(){
+        $(this).find('.inner-menu').show();
+      }, function(){
+        $(this).find('.inner-menu').hide();
+      });
+    });
+    </script>
+
+
+    <style>
+
+    body{
+      width: 660px;
+      margin: auto;
+    }
+
+    h1{
+      text-align: center;
+    }
+    h2{
+      text-align: center;
+    }
+    a{
+      text-decoration: none;
+    }
+    li{
+      list-style: none;
+    }
+
+    .div{
+      border-style: solid;
+      border-width: thin;
+    }
+
+    .menu-list{
+      width: 660px;
+      height: auto;
+      float:inherit;
+      position: relative;
+      margin: auto;
+    }
+    .outer-menu{
+      padding: 0px;
+      margin: auto;
+
+    }
+    .outer-menu-item{
+      float: left;
+      position: relative;
+      width: 160px;
+      text-align: center;
+      background-color: rgba(255,255,255,0.4);
+      /*border-style:solid;
+      border-width: thin;*/
+    }
+
+
+    .menu-title:hover{
+     /*color: white;*/
+     background-color: rgba(200,200,200,1);
+    }
+
+    .menu-title{
+      display: block;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      padding: 0px;
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+
+    .inner-menu{
+      display: none;
+      /*position: absolute;*/
+      /*position: relative;*/
+      padding: 0px;
+      width: 180px; height: auto;
+      text-align: center;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+
+    }
+
+
+    .inner-menu li{
+      height: 50px;
+      line-height: 50px;
+      width: 210px;
+      /*float: left;*/
+      /*border-style: solid;
+      border-width: thin;*/
+
+    }
+
+    .inner-menu li a{
+      color: rgb(0,0,0);
+      font-size: 14px;
+    }
+
+    .inner-menu :hover{
+      background: rgba(230,230,230,1);
+    }
+
+    .inner-div{
+      height: auto;
+      width: auto;
+      position: absolute;
+      left: -20px;
+    }
+
+    #first{
+      left: -20px;
+      position: absolute;
+    }
+
+
+    </style>
+  </head>
+  <body>
+<h1>대학 수학 문제은행</h1>
+
+    <!--<h2>과목 선택</h2>-->
+
+    <div class="menu-list" class="div">
+      <ul class="outer-menu">
+        <li class="outer-menu-item" id="menu1">
+          <span class="menu-title">미적분</span>
+          <ul class="inner-menu" id="first">
+            <!--<li><a href="#" onclick="dobong(); return false;">도봉</a></li>-->
+            <li><a href="#">함수와 극한</a></li>
+            <li><a href="#">도함수</a></li>
+            <li><a href="#">역함수</a></li>
+            <li><a href="#">미분</a></li>
+            <li><a href="#">적분</a></li>
+            <li><a href="#">급수</a></li>
+            <li><a href="#">매개 방정식과 극 좌표</a></li>
+            <li><a href="#">벡터와 공간 기하학</a></li>
+            <li><a href="#">편도함수</a></li>
+            <li><a href="#">다중 적분</a></li>
+            <li><a href="#">벡터 해석</a></li>
+          </ul>
+        </li>
+        <li class="outer-menu-item" id="menu2">
+          <span class="menu-title">이산수학</span>
+          <div class="inner-div">
+            <ul class="inner-menu">
+              <li><a href="#">논리와 명제</a></li>
+              <li><a href="#">성질과 알고리즘</a></li>
+              <li><a href="#">세는 방법</a></li>
+              <li><a href="#">관계 및 함수</a></li>
+              <li><a href="#">그래프</a></li>
+              <li><a href="#">수형도</a></li>
+              <li><a href="#">부울대수</a></li>
+              <li><a href="#">형식언어와 유한상태기계</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="outer-menu-item" id="menu3">
+          <span class="menu-title">확률과 통계</span>
+          <div class="inner-div">
+            <ul class="inner-menu">
+              <li><a href="#">집합</a></li>
+              <li><a href="#">확률</a></li>
+              <li><a href="#">확률변수</a></li>
+              <li><a href="#">확률벡터</a></li>
+              <li><a href="#">순서 통계량</a></li>
+              <li><a href="#">순위 통계량</a></li>
+              <li><a href="#">확률변수와 수렴</a></li>
+              <li><a href="#">확률과정</a></li>
+              <li><a href="#">전력 밀도와 선형 시스템</a></li>
+              <li><a href="#">몇 가지 확률 과정</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="outer-menu-item" id="menu4">
+          <span class="menu-title">선형대수</span>
+          <div class="inner-div">
+            <ul class="inner-menu">
+              <li><a href="#">연립일차방적식과 행렬</a></li>
+              <li><a href="#">행렬식</a></li>
+              <li><a href="#">유클리드 벡터공간</a></li>
+              <li><a href="#">일반 벡터공간</a></li>
+              <li><a href="#">고유값, 고유벡터</a></li>
+              <li><a href="#">내적공간</a></li>
+              <li><a href="#">대각화와 이차형식</a></li>
+              <li><a href="#">선형변환</a></li>
+              <li><a href="#">수치적 방법</a></li>
+            </ul>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+
+
+
+  </body>
+</html>
