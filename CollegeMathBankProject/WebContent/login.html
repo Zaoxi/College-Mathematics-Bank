@@ -5,7 +5,6 @@
     <style>
     h1{
       text-align: center;
-
     }
     body{
       width: 660px;
@@ -38,18 +37,24 @@
   </head>
   <body>
     <h1>대학 수학 문제은행</h1>
-  <form id="frmNIDLogin" class = "form" name="frmNIDLogin" target="_top" autocomplete="off" method="post" onsubmit="return confirmAlterSubmit();" >
+  <form id="frmNIDLogin" class = "form" name="frmNIDLogin" target="_top" autocomplete="off" method="post">
   		<div class="input_row" id="id_area">
   			<span class="input_box">
-  				<input type="text" id="id" name="id" class = "textlabel" tabindex="7" accesskey="L" placeholder="아이디" class="int" maxlength="41" value="">
+  				<input type="text" id="id" name="id" class = "textlabel" tabindex="7" accesskey="L" placeholder="아이디" class="int" maxlength="20" value="">
   			</span>
   		</div>
   		<div class="input_row" id="pw_area">
   			<span class="input_box">
-  				<input type="password" id="pw" class = "textlabel" name="pw" tabindex="8" placeholder="비밀번호" class="int" maxlength="16" onkeypress="capslockevt(event);getKeysv2();" onkeyup="checkShiftUp(event);" onkeydown="checkShiftDown(event);">
+  				<input type="password" id="pw" class = "textlabel" name="pw" tabindex="8" placeholder="비밀번호" maxlength="20">
   			</span>
   		</div>
-  		<input type="submit" title="로그인" class = "button" alt="로그인" tabindex="12" value="로그인" class="btn_global" onclick="nclks('log.login',this,event)">
+  		<input type="submit" title="로그인" class = "button" alt="로그인" tabindex="12" value="로그인">
+
+      <!--메시지 박스 출력-->
+      <script>
+        alert("아이디 또는 패스워드를 잘못 입력하셨습니다.");
+      </script>
+
   </form>
 
   </body>
