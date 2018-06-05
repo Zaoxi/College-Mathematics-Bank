@@ -40,7 +40,8 @@ public class JSPServer extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String userIP = request.getRemoteAddr();
-		
+		System.out.println(request.getParameter("sub"));
+		System.out.println(request.getParameter("con"));
 		// 처음 접속한 유저인 경우
 		if(!userTable.containsKey(userIP))
 		{

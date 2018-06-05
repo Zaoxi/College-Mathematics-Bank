@@ -55,7 +55,7 @@ public class SubjectHTML implements AHTML {
 				+ "          <span class=\"menu-title\">미적분</span>\r\n"
 				+ "          <ul class=\"inner-menu\" id=\"first\">\r\n"
 				+ "            <!--<li><a href=\"#\" onclick=\"dobong(); return false;\">도봉</a></li>-->\r\n"
-				+ "            <li><a href=\"#\">함수와 극한</a></li>\r\n" + "            <li><a href=\"#\">도함수</a></li>\r\n"
+				+ "            <li><a href=\"?sub=funcMath&con=endless\">함수와 극한</a></li>\r\n" + "            <li><a href=\"#\">도함수</a></li>\r\n"
 				+ "            <li><a href=\"#\">역함수</a></li>\r\n" + "            <li><a href=\"#\">미분</a></li>\r\n"
 				+ "            <li><a href=\"#\">적분</a></li>\r\n" + "            <li><a href=\"#\">급수</a></li>\r\n"
 				+ "            <li><a href=\"#\">매개 방정식과 극 좌표</a></li>\r\n"
