@@ -42,4 +42,24 @@ public class ProblemFormat {
 		this.rightAnswerImagePath = rightAnswerImagePath;
 	}
 	
+	public String GetContent()
+	{
+		return content;
+	}
+	public String GetImagePath()
+	{
+		return imagePath;
+	}
+	public String GetSolution()
+	{
+		return solution;
+	}
+	public String GetRightAnswer()
+	{
+		return rightAnswer;
+	}
+	public String GetRightAnswerImagePath()
+	{
+		return rightAnswerImagePath;
+	}
 }

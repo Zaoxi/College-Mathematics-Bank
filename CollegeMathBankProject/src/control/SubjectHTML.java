@@ -130,13 +130,27 @@ public class SubjectHTML implements AHTML {
 				"      left: -20px;\r\n" + 
 				"      position: absolute;\r\n" + 
 				"    }\r\n" + 
+				"    #frmLogout{\r\n" + 
+				"      float: right;\r\n" + 
+				"      position: relative;\r\n" + 
+				"    }\r\n" + 
+				"    #logoutbutton{\r\n" + 
+				"      position: absolute;\r\n" + 
+				"      top: -60px;\r\n" + 
+				"      background-color: rgb(255,255,255);\r\n" + 
+				"      border-style:solid;\r\n" + 
+				"      border-width: thin;\r\n" + 
+				"    }\r\n" + 
+				"\r\n" + 
 				"\r\n" + 
 				"\r\n" + 
 				"    </style>\r\n" + 
 				"  </head>\r\n" + 
 				"  <body>\r\n" + 
 				"<h1>대학 수학 문제은행</h1>\r\n" + 
-				"\r\n" + 
+				"  <form id=\"frmLogout\" method=\"post\">\r\n" + 
+				"    <input type=\"button\" id=\"logoutbutton\" name=\"로그아웃\" value=\"로그아웃\">\r\n" + 
+				"  </form>\r\n" + 
 				"    <div class=\"menu-list\" class=\"div\">\r\n" + 
 				"      <ul class=\"outer-menu\">\r\n" + 
 				"        <li class=\"outer-menu-item\" id=\"menu1\">\r\n" + 
@@ -216,8 +230,15 @@ public class SubjectHTML implements AHTML {
 
 	@Override
 	public void ProcessRequest(HttpServletRequest req) throws IOException {
-		MathManager.GetInstance().GetJSPServer().SetHTML(req, new ProblemHTML(req.getParameter("sub"), req.getParameter("con"), 1));
-		
+		String sub = req.getParameter("sub");
+		String con = req.getParameter("con");
+		if(sub == null && con == null)
+		{
+			MathManager.GetInstance().GetJSPServer().LogoutUser(req);
+		}
+		else {
+			MathManager.GetInstance().GetJSPServer().SetHTML(req, new ProblemHTML(sub, con, 1));	
+		}
 	}
 
 }

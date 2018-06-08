@@ -4,13 +4,13 @@ import java.sql.*;
 
 public class MathDAO {
 	private Connection conn = null;
-	private String url = "jdbc:mysql://localhost:3306/testdb";
+	private String url = "jdbc:mysql://localhost:3306/testdb?serverTimezone=Asia/Seoul";
 	private String id = "root";
 	private String pw = "1234";
 
 	public MathDAO() {
 		try {
-			Class.forName("con.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, id, pw);
 			System.out.println("MySQL : " + url + "연결성공!");
 
@@ -22,7 +22,8 @@ public class MathDAO {
 	public void CloseDB()
 	{
 		try {
-			conn.close();
+			if(conn != null)
+				conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

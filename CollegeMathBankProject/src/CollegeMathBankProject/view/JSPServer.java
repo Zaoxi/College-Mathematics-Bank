@@ -31,6 +31,11 @@ public class JSPServer extends HttpServlet {
 	public void SetHTML(HttpServletRequest req, AHTML newHtmlController) {
 		userTable.replace(req.getRemoteAddr(), newHtmlController);
 	}
+	
+	public void LogoutUser(HttpServletRequest req)
+	{
+		userTable.remove(req.getRemoteAddr());
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
