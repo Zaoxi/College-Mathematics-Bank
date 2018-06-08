@@ -216,7 +216,7 @@ public class SubjectHTML implements AHTML {
 
 	@Override
 	public void ProcessRequest(HttpServletRequest req) throws IOException {
-		MathManager.GetInstance().GetJSPServer().SetHTML(req, new ProblemHTML(req.getParameter("sub"), req.getParameter("con")));
+		MathManager.GetInstance().GetJSPServer().SetHTML(req, new ProblemHTML(req.getParameter("sub"), req.getParameter("con"), 1));
 		
 	}
 
