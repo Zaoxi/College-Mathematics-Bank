@@ -1,4 +1,4 @@
-package model;
+﻿package model;
 
 // db에서 읽어온 문제 하나를 저장하는 형식 클래스
 public class ProblemFormat {
@@ -7,6 +7,10 @@ public class ProblemFormat {
 	private String solution;
 	private String rightAnswer;
 	private String rightAnswerImagePath;
+	
+	public ProblemFormat() {
+		
+	}
 	
 	public ProblemFormat(String _content, String _imagePath, String _solution, String _rightAnswer, String _rightAnswerImagePath)
 	{
@@ -17,24 +21,25 @@ public class ProblemFormat {
 		rightAnswerImagePath = _rightAnswerImagePath;
 	}
 	
-	public String GetContent()
+	public void SetContent(String content)
 	{
-		return content;
+		this.content = content;
 	}
-	public String GetImagePath()
+	public void SetImagePath(String imagePath)
 	{
-		return imagePath;
+		this.imagePath = imagePath;
 	}
-	public String GetSolution()
+	public void SetSolution(String solution)
 	{
-		return solution;
+		this.solution = solution;
 	}
-	public String GetRightAnswer()
+	public void SetRightAnswer(String rightAnswer)
 	{
-		return rightAnswer;
+		this.rightAnswer = rightAnswer;
 	}
-	public String GetRightAnswerImagePath()
+	public void SetRightAnswerImagePath(String rightAnswerImagePath)
 	{
-		return rightAnswerImagePath;
+		this.rightAnswerImagePath = rightAnswerImagePath;
 	}
+	
 }

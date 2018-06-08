@@ -1,4 +1,4 @@
-package model;
+﻿package model;
 
 import java.sql.*;
 
@@ -12,7 +12,7 @@ public class MathDAO {
 		try {
 			Class.forName("con.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, id, pw);
-			System.out.println("MySQL : " + url + "연결 성공!");
+			System.out.println("MySQL : " + url + "연결성공!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -29,18 +29,103 @@ public class MathDAO {
 	}
 	
 	
-	// 전세영 담당 부분.
-	// id와 pw를 받아서 유저가 존재하는지 확인
-	// 해당 id, pw와 일치하는 유저가 있다면 true
-	// 없으면 false 반환
 	public boolean BisExistUser(String id, String pw)
 	{
-		return true;
+		String getPassWord="";
+		
+		Statement stmt = null;
+		
+		try {
+			stmt = conn.createStatement();
+			
+			String sql;
+			sql = "SELECT USERPW FROM USER WHERE USERID = '"+id+"'";
+			ResultSet rs = stmt.executeQuery((sql));
+			
+			while(rs.next()) {
+				getPassWord = rs.getString("USERPW");
+			}
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException sel) {
+			sel.printStackTrace();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		finally{
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+		
+		System.out.println("\n\n- MySQL Connection Close");
+		
+		if(getPassWord.equals((pw)) && !getPassWord.equals("")){
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	// (과목명, 단원명, 문제 번호)를 전달하면 해당하는 문제의 내용, 정답, 풀이, 그림 이미지 경로등 모든 것을 전달
-	// 이미지 경로의 경우 존재하지 않는다면 null을 대입해 줄 것.
-	public ProblemFormat GetProblem(String subject, String content, int problemNum)
+
+	public ProblemFormat GetProblem(String subject, String unit, int problemNum)
 	{
-		return null;
+		
+		ProblemFormat information = new ProblemFormat();
+		
+		Statement stmt = null;
+		
+		try {
+			stmt = conn.createStatement();
+			
+			String sql;
+		
+			sql = "SELECT CONTENT,IMAGEPATH,SOLUTION,RIGHTANSWER,RIGHTANSWERIMAGEPATH FROM PROBLEM "
+					+ "WHERE SUBJECTKIND = '"+subject+"' AND UNIT = '"+unit+"' AND PROBLEMNO = "+problemNum;
+			
+			ResultSet rs = stmt.executeQuery((sql));
+			
+			while(rs.next()) {
+				information.SetContent(rs.getString("CONTENT"));
+				information.SetImagePath(rs.getString("IMAGEPATH"));
+				information.SetSolution(rs.getString("SOLUTION"));
+				information.SetRightAnswer(rs.getString("RIGHTANSWER"));
+				information.SetRightAnswerImagePath(rs.getString("RIGHTANSWERIMAGEPATH")); 
+			}
+			
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException sel) {
+			sel.printStackTrace();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		finally{
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+			}
+			try{
+				if(conn!=null)
+					conn.close();
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+		
+		return information;
 	}
 }
