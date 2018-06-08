@@ -37,6 +37,10 @@ public class MathDAO {
 	{
 		return true;
 	}
-	
-	
+	// (과목명, 단원명, 문제 번호)를 전달하면 해당하는 문제의 내용, 정답, 풀이, 그림 이미지 경로등 모든 것을 전달
+	// 이미지 경로의 경우 존재하지 않는다면 null을 대입해 줄 것.
+	public ProblemFormat GetProblem(String subject, String content, int problemNum)
+	{
+		return null;
+	}
 }

@@ -22,6 +22,8 @@ public class ProblemHTML implements AHTML {
 	public void PrintHTML(HttpServletResponse res) throws IOException {
 		PrintWriter out = res.getWriter();
 		out.println("");
+		
+		MathManager.GetInstance().GetMathDAO();
 	}
 
 	@Override
