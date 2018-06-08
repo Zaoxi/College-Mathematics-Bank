@@ -35,7 +35,7 @@ public class MathDAO {
 	// 없으면 false 반환
 	public boolean BisExistUser(String id, String pw)
 	{
-		return false;
+		return true;
 	}
 	
 	

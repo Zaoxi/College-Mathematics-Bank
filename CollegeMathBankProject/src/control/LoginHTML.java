@@ -43,7 +43,7 @@ public class LoginHTML implements AHTML {
 		 */
 		if (MathManager.GetInstance().GetMathDAO().BisExistUser(id, pw)) {
 			// 단원을 출력하는 페이지로 전환
-			MathManager.GetInstance().GetJSPServer().SetHTML(req, new SubjectHTML());
+			MathManager.GetInstance().GetJSPServer().SetHTML(req, MathManager.GetInstance().GetSubjectPage());
 		} else {
 			// 로그인에 실패한 페이지로 전환
 			MathManager.GetInstance().GetJSPServer().SetHTML(req, MathManager.GetInstance().GetLoginFailPage());
