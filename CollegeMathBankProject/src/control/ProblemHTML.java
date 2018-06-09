@@ -34,6 +34,8 @@ public class ProblemHTML implements AHTML {
 	public void PrintHTML(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		PrintWriter out = res.getWriter();
 		System.out.println(req.getContextPath());
+		System.out.println(problem.GetRightAnswerImagePath());
+		System.out.println(req.getServletPath());
 		out.println("<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 
 				"  <head>\r\n" + 
@@ -286,21 +288,24 @@ public class ProblemHTML implements AHTML {
 
 	@Override
 	public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		PrintHTML(req, res);
 		String subjectButton = req.getParameter("과목선택");
 		String nextButton = req.getParameter("다음문제");
 		System.out.println(subjectButton + nextButton);
-//		if(subjectButton.equals("과목선택")) 
-//		{
-//			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, MathManager.GetInstance().GetSubjectPage());
-//			MathManager.GetInstance().GetSubjectPage().PrintHTML(req, res);
-//		}
-//		else if(nextButton.equals("다음문제"))
-//		{
-//			ProblemHTML problem = new ProblemHTML(subject, content, problemNum + 1);
-//			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, problem);
-//			problem.PrintHTML(req, res);
-//		}
+		if(subjectButton == null & nextButton == null)
+		{
+			PrintHTML(req, res);
+		}
+		else if(subjectButton != null && subjectButton.equals("과목선택")) 
+		{
+			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, MathManager.GetInstance().GetSubjectPage());
+			MathManager.GetInstance().GetSubjectPage().PrintHTML(req, res);
+		}
+		else if(nextButton != null && nextButton.equals("다음문제"))
+		{
+			ProblemHTML problem = new ProblemHTML(subject, content, problemNum + 1);
+			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, problem);
+			problem.PrintHTML(req, res);
+		}
 	}
 
 }
