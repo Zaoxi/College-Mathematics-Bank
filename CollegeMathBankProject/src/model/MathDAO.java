@@ -63,8 +63,6 @@ public class MathDAO {
 			}
 		}
 		
-		System.out.println("\n\n- MySQL Connection Close");
-		
 		if(getPassWord.equals((pw)) && !getPassWord.equals("")){
 			return true;
 		}
