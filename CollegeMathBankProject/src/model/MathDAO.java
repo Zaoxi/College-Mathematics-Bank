@@ -61,12 +61,6 @@ public class MathDAO {
 					stmt.close();
 			}catch(SQLException se2){
 			}
-			try{
-				if(conn!=null)
-					conn.close();
-			}catch(SQLException se){
-				se.printStackTrace();
-			}
 		}
 		
 		System.out.println("\n\n- MySQL Connection Close");
@@ -118,12 +112,6 @@ public class MathDAO {
 				if(stmt!=null)
 					stmt.close();
 			}catch(SQLException se2){
-			}
-			try{
-				if(conn!=null)
-					conn.close();
-			}catch(SQLException se){
-				se.printStackTrace();
 			}
 		}
 		
