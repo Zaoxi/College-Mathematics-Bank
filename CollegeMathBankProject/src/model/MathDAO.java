@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class MathDAO {
 	private Connection conn = null;
-	private String url = "jdbc:mysql://localhost:3306/testdb?serverTimezone=Asia/Seoul";
+	private String url = "jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul";
 	private String id = "root";
 	private String pw = "1234";
 

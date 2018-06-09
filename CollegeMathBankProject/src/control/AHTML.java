@@ -7,6 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface AHTML 
 {
-	public void PrintHTML(HttpServletResponse res) throws IOException;
-	public void ProcessRequest(HttpServletRequest req) throws IOException;
+	public void PrintHTML(HttpServletRequest req, HttpServletResponse res) throws IOException;
+	public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException;
 }

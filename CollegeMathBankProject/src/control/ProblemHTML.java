@@ -21,17 +21,15 @@ public class ProblemHTML implements AHTML {
 		subject = _subject;
 		content = _content;
 		problemNum = _problemNum;
-		if(subject != null && content != null)
-		{
-			problem = MathManager.GetInstance().GetMathDAO().GetProblem(subject, content, problemNum);
-		}
+		problem = MathManager.GetInstance().GetMathDAO().GetProblem(subject, content, problemNum);
+		System.out.println(subject + content + problemNum);
+		System.out.println(problem.GetContent());
 	}
 	
 	
 	@Override
-	public void PrintHTML(HttpServletResponse res) throws IOException {
+	public void PrintHTML(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		PrintWriter out = res.getWriter();
-		
 		out.println("<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 
 				"  <head>\r\n" + 
@@ -247,11 +245,11 @@ public class ProblemHTML implements AHTML {
 				"\r\n" + 
 				"    <h1>대학 수학 문제은행</h1>\r\n" + 
 				"    <form id=\"frmbutton\" method=\"post\">\r\n" + 
-				"      <input class=\"topbutton\" type=\"button\" id=\"subject\" name=\"과목선택\" value=\"과목선택\">\r\n" + 
-				"      <input class=\"topbutton\" type=\"button\" id=\"next\" name=\"과목선택\" value=\"다음문제\">\r\n" + 
-				"    </form>\r\n" + 
-				"    <h3>과목</h3>\r\n" + 
-				"    <h4>목차</h4>\r\n" + 
+				"      <input class=\"topbutton\" type=\"submit\" id=\"subject\" name=\"과목선택\" value=\"과목선택\">\r\n" + 
+				"      <input class=\"topbutton\" type=\"submit\" id=\"next\" name=\"다음문제\" value=\"다음문제\">\r\n" + 
+				"    </form>\r\n" +
+				"    <h3>" + subject + "</h3>\r\n" + 
+				"    <h4>" + content + "</h4>\r\n" + 
 				"\r\n" + 
 				"    <div class=\"pro\">\r\n" + 
 				"      <p class=\"solandexpp\">문제</p>\r\n" + 
@@ -273,7 +271,7 @@ public class ProblemHTML implements AHTML {
 				"\r\n" + 
 				"    <div class=\"solandexpdiv\"id=\"exp\">\r\n" + 
 				"      <p class=\"solandexpp\" >해설</p>\r\n" + 
-				"      <p>" + problem.GetSolution() + "</p>\r\n" + 
+				"      <p>0.9721</p>\r\n" + 
 				"      <img id=\"explanationimg\" src=\"" + problem.GetRightAnswerImagePath() + "\" alt=\"\">\r\n" + 
 				"    </div>\r\n" + 
 				"\r\n" + 
@@ -283,20 +281,8 @@ public class ProblemHTML implements AHTML {
 	}
 
 	@Override
-	public void ProcessRequest(HttpServletRequest req) throws IOException {
-		String inputButton = req.getParameter("과목선택");
-		if(inputButton.equals("과목선택"))
-		{
-			MathManager.GetInstance().GetJSPServer().SetHTML(req, MathManager.GetInstance().GetSubjectPage());
-		}
-		else if(inputButton.equals("다음문제"))
-		{
-			MathManager.GetInstance().GetJSPServer().SetHTML(req, new ProblemHTML(subject, content, problemNum + 1));
-		}
-		else
-		{
-			
-		}
+	public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		PrintHTML(req, res);
 	}
 
 }

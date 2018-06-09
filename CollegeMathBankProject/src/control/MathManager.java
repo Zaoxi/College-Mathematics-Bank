@@ -11,10 +11,8 @@ public class MathManager {
 	private MainController mainController;
 	private MathDAO dao;
 	
-	//AHTML
 	private LoginHTML loginPage;
 	private SubjectHTML subjectPage;
-	private LoginFailHTML loginFailPage;
 	
 	static public MathManager GetInstance() {
 		if (instance == null)
@@ -29,7 +27,6 @@ public class MathManager {
 		mainController = new MainController();
 		loginPage = new LoginHTML();
 		subjectPage = new SubjectHTML();
-		loginFailPage = new LoginFailHTML();
 	}
 
 	// JSP 클래스에서 직접 호출하여 객체 전달
@@ -49,7 +46,6 @@ public class MathManager {
 	{
 		return dao;
 	}
-	
 	public LoginHTML GetLoginPage()
 	{
 		return loginPage;
@@ -57,9 +53,5 @@ public class MathManager {
 	public SubjectHTML GetSubjectPage()
 	{
 		return subjectPage;
-	}
-	public LoginFailHTML GetLoginFailPage()
-	{
-		return loginFailPage;
 	}
 }

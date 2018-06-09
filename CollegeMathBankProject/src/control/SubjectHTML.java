@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import java.io.PrintWriter;
 import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,9 +14,8 @@ import jdk.nashorn.internal.ir.RuntimeNode.Request;
 public class SubjectHTML implements AHTML {
 
 	@Override
-	public void PrintHTML(HttpServletResponse res) throws IOException {
+	public void PrintHTML(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		PrintWriter out = res.getWriter();
-
 		out.println("<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 
 				"  <head>\r\n" + 
@@ -149,7 +150,7 @@ public class SubjectHTML implements AHTML {
 				"  <body>\r\n" + 
 				"<h1>대학 수학 문제은행</h1>\r\n" + 
 				"  <form id=\"frmLogout\" method=\"post\">\r\n" + 
-				"    <input type=\"button\" id=\"logoutbutton\" name=\"로그아웃\" value=\"로그아웃\">\r\n" + 
+				"    <input type=\"submit\" id=\"logoutbutton\" name=\"로그아웃\" value=\"로그아웃\">\r\n" + 
 				"  </form>\r\n" + 
 				"    <div class=\"menu-list\" class=\"div\">\r\n" + 
 				"      <ul class=\"outer-menu\">\r\n" + 
@@ -229,15 +230,20 @@ public class SubjectHTML implements AHTML {
 	}
 
 	@Override
-	public void ProcessRequest(HttpServletRequest req) throws IOException {
+	public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String sub = req.getParameter("sub");
 		String con = req.getParameter("con");
+		System.out.println(sub + con);
 		if(sub == null && con == null)
 		{
 			MathManager.GetInstance().GetJSPServer().LogoutUser(req);
+			MathManager.GetInstance().GetLoginPage().PrintHTML(req, res);
 		}
-		else {
-			MathManager.GetInstance().GetJSPServer().SetHTML(req, new ProblemHTML(sub, con, 1));	
+		else
+		{
+			ProblemHTML problem = new ProblemHTML(sub, con, 1);
+			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, problem);
+			problem.PrintHTML(req, res);
 		}
 	}
 

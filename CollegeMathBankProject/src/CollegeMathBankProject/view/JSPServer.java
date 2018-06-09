@@ -16,59 +16,63 @@ import control.*;
 @WebServlet(description = "대학 수학 문제 은행 시스템 서블릿", urlPatterns = { "/JSPServer" })
 public class JSPServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Hashtable<String, AHTML> userTable;
 	
+	private MathManager manager = null;
+	private Hashtable<String, AHTML> users;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public JSPServer() {
 		super();
-		MathManager.GetInstance().SetJSPServer(this);
-		userTable = new Hashtable<String, AHTML>();
-	}
-
-	// HTML Controller를 동적으로 설정
-	public void SetHTML(HttpServletRequest req, AHTML newHtmlController) {
-		userTable.replace(req.getRemoteAddr(), newHtmlController);
-	}
-	
-	public void LogoutUser(HttpServletRequest req)
-	{
-		userTable.remove(req.getRemoteAddr());
+		manager = MathManager.GetInstance();
+		manager.SetJSPServer(this);
+		users = new Hashtable<String, AHTML>();
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 기본 인코딩 설정
 		response.setContentType("text/html;charset=UTF-8");
-		String userIP = request.getRemoteAddr();
-		System.out.println(request.getParameter("sub"));
-		System.out.println(request.getParameter("con"));
-		// 처음 접속한 유저인 경우
-		if(!userTable.containsKey(userIP))
+		if(!users.containsKey(request.getRemoteAddr()))
 		{
-			userTable.put(userIP, MathManager.GetInstance().GetLoginPage());
+			MathManager.GetInstance().GetLoginPage().ProcessRequest(request, response);;
 		}
-		
-		userTable.get(userIP).PrintHTML(response);
+		else
+		{
+			users.get(request.getRemoteAddr()).ProcessRequest(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 기본 인코딩 설정
 		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		
-		String userIP = request.getRemoteAddr();
-		userTable.get(userIP).ProcessRequest(request);
-		
 		doGet(request, response);
 	}
-
+	
+	// 유저를 등록하는 메소드
+	public void LoginUser(HttpServletRequest request)
+	{
+		users.put(request.getRemoteAddr(), MathManager.GetInstance().GetSubjectPage());
+	}
+	// 유저 등록을 해제하는 메소드
+	public void LogoutUser(HttpServletRequest request)
+	{
+		users.remove(request.getRemoteAddr());
+	}
+	// 유저가 현재 진행중인 작업을 저장하는 메소드
+	public void SetUserAHTML(HttpServletRequest request, AHTML html)
+	{
+		users.replace(request.getRemoteAddr(), html);
+	}
+	
+	
 }
