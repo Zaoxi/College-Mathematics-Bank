@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.glass.ui.Application;
+import java.io.*;
+
 import model.*;
 
 public class ProblemHTML implements AHTML {
@@ -30,6 +33,7 @@ public class ProblemHTML implements AHTML {
 	@Override
 	public void PrintHTML(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		PrintWriter out = res.getWriter();
+		System.out.println(req.getContextPath());
 		out.println("<!DOCTYPE html>\r\n" + 
 				"<html>\r\n" + 
 				"  <head>\r\n" + 
@@ -244,7 +248,7 @@ public class ProblemHTML implements AHTML {
 				"  <body>\r\n" + 
 				"\r\n" + 
 				"    <h1>대학 수학 문제은행</h1>\r\n" + 
-				"    <form id=\"frmbutton\" method=\"post\">\r\n" + 
+				"    <form id=\"frmbutton\" method=\"get\">\r\n" + 
 				"      <input class=\"topbutton\" type=\"submit\" id=\"subject\" name=\"과목선택\" value=\"과목선택\">\r\n" + 
 				"      <input class=\"topbutton\" type=\"submit\" id=\"next\" name=\"다음문제\" value=\"다음문제\">\r\n" + 
 				"    </form>\r\n" +
@@ -256,7 +260,7 @@ public class ProblemHTML implements AHTML {
 				"      <p></p> <!-- <p>데이터 베이스로 부터 문제를 읽어와서 여기에 그대로 대입하면 된다.</p> -->\r\n" + 
 				"      <p>" + problem.GetContent() + "</p>\r\n" + 
 				"      <!-- src=\"DB에 저장된 이미지가 저장된 경로를 대입하면 된다\" -->\r\n" + 
-				"      <img id=\"solutionimg\" src=\"" + problem.GetImagePath() + "\" alt=\"\">\r\n" + 
+				"      <img id=\"solutionimg\" src=\"" + req.getContextPath() + "/" + problem.GetImagePath() + "\" alt=\"\">\r\n" + 
 				"    </div>\r\n" + 
 				"\r\n" + 
 				"    <div class=\"buttondiv\">\r\n" + 
@@ -271,8 +275,8 @@ public class ProblemHTML implements AHTML {
 				"\r\n" + 
 				"    <div class=\"solandexpdiv\"id=\"exp\">\r\n" + 
 				"      <p class=\"solandexpp\" >해설</p>\r\n" + 
-				"      <p>0.9721</p>\r\n" + 
-				"      <img id=\"explanationimg\" src=\"" + problem.GetRightAnswerImagePath() + "\" alt=\"\">\r\n" + 
+				"      <p>" + problem.GetSolution() + "</p>\r\n" + 
+				"      <img id=\"explanationimg\" src=\"" + req.getContextPath() + "/" + problem.GetRightAnswerImagePath() + "\" alt=\"\">\r\n" + 
 				"    </div>\r\n" + 
 				"\r\n" + 
 				"  </body>\r\n" + 
@@ -283,6 +287,20 @@ public class ProblemHTML implements AHTML {
 	@Override
 	public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		PrintHTML(req, res);
+		String subjectButton = req.getParameter("과목선택");
+		String nextButton = req.getParameter("다음문제");
+		System.out.println(subjectButton + nextButton);
+//		if(subjectButton.equals("과목선택")) 
+//		{
+//			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, MathManager.GetInstance().GetSubjectPage());
+//			MathManager.GetInstance().GetSubjectPage().PrintHTML(req, res);
+//		}
+//		else if(nextButton.equals("다음문제"))
+//		{
+//			ProblemHTML problem = new ProblemHTML(subject, content, problemNum + 1);
+//			MathManager.GetInstance().GetJSPServer().SetUserAHTML(req, problem);
+//			problem.PrintHTML(req, res);
+//		}
 	}
 
 }
