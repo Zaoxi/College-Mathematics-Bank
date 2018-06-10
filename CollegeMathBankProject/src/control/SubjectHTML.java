@@ -164,7 +164,7 @@ public class SubjectHTML implements AHTML {
 				"            <li><a href=\"?sub=미적분&con=적분\">적분</a></li>\r\n" + 
 				"            <li><a href=\"?sub=미적분&con=급수\">급수</a></li>\r\n" + 
 				"            <li><a href=\"?sub=미적분&con=매개 방정식과 극 좌표\">매개 방정식과 극 좌표</a></li>\r\n" + 
-				"            <li><a href=\"?sub=미적분&con=벡터와 공간 기하학\">벡터와 공간 기하학</a></li>\r\n" + 
+				"            <li><a href=\"?sub=미적분&con=벡터 공간 기하학\">벡터 공간 기하학</a></li>\r\n" + 
 				"            <li><a href=\"?sub=미적분&con=편도합수\">편도함수</a></li>\r\n" + 
 				"            <li><a href=\"?sub=미적분&con=다중 적분\">다중 적분</a></li>\r\n" + 
 				"            <li><a href=\"?sub=미적분&con=벡터 해석\">벡터 해석</a></li>\r\n" + 
